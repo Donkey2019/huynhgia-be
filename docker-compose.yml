@@ -1,24 +1,6 @@
 version: '3.8'
 
 services:
-  # MySQL Database
-  mysql:
-    image: mysql:8.0
-    container_name: huynhgia-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: huynhgiafarm
-      MYSQL_USER: huynhgia
-      MYSQL_PASSWORD: huynhgia123
-    ports:
-      - "3307:3306"
-    volumes:
-      - huynhgia_mysql_data:/var/lib/mysql
-    networks:
-      - huynhgia-network
-    command: --default-authentication-plugin=mysql_native_password
-
   # Spring Boot Application
   app:
     build: .
@@ -27,22 +9,15 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/huynhgiafarm?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      SPRING_DATASOURCE_USERNAME: huynhgia
-      SPRING_DATASOURCE_PASSWORD: huynhgia123
+      SPRING_DATASOURCE_URL: jdbc:mysql://root:RPUDoNabMnAdUFEacCRNVYxfsqJMkFeI@crossover.proxy.rlwy.net:31040/railway
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: RPUDoNabMnAdUFEacCRNVYxfsqJMkFeI
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
       SPRING_PROFILES_ACTIVE: docker
-    depends_on:
-      - mysql
-    networks:
-      - huynhgia-network
-
-volumes:
-  huynhgia_mysql_data:
 
 networks:
-  huynhgia-network:
+  default:
     driver: bridge
 
  
