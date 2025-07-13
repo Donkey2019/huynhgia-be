@@ -33,6 +33,9 @@ public class Import {
     @Column(nullable = false)
     private Integer supplier;
 
+    @Column(length = 100)
+    private String importer;
+
     @Column(precision = 14, scale = 2)
     private BigDecimal total;
 

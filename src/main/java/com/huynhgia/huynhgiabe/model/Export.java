@@ -41,4 +41,7 @@ public class Export {
 
     @Column(columnDefinition = "TEXT")
     private String note;
+
+    @Column(length = 100)
+    private String exporter;
 } 
